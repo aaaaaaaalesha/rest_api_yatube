@@ -1,7 +1,27 @@
 from django.contrib.auth import get_user_model
 from django.db import models
+from django.db.models import UniqueConstraint
 
 User = get_user_model()
+
+
+class Group(models.Model):
+    title = models.CharField(
+        'Название группы',
+        help_text='Введите название группы',
+        max_length=200,
+    )
+    slug = models.SlugField(
+        'Слаг группы',
+        unique=True,
+    )
+    description = models.TextField(
+        'Описание',
+        help_text='Укажите описание группы',
+    )
+
+    def __str__(self):
+        return str(self.title)
 
 
 class Post(models.Model):
@@ -24,3 +44,26 @@ class Comment(models.Model):
     text = models.TextField()
     created = models.DateTimeField(
         'Дата добавления', auto_now_add=True, db_index=True)
+
+
+class Follow(models.Model):
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        verbose_name='Подписчик',
+        related_name='follower',
+    )
+    following = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        verbose_name='Автор',
+        related_name='following',
+    )
+
+    class Meta:
+        constraints = (
+            UniqueConstraint(
+                fields=['user', 'following'],
+                name='unique_following'
+            ),
+        )
