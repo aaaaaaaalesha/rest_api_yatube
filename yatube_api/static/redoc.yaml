@@ -37,13 +37,12 @@ paths:
                     next: http://api.example.org/accounts/?offset=400&limit=100
                     previous: http://api.example.org/accounts/?offset=200&limit=100
                     results:
-                      -
-                        id: 0
+                      - id: 0
                         author: string
                         text: string
                         pub_date: 2021-10-14T20:41:29.648Z
                         image: string
-                        group: 0            
+                        group: 0
           description: Удачное выполнение запроса без пагинации
       tags:
         - api
@@ -52,7 +51,7 @@ paths:
       description: >-
         Добавление новой публикации в коллекцию публикаций. Анонимные запросы
         запрещены.
-      parameters: []
+      parameters: [ ]
       requestBody:
         content:
           application/json:
@@ -307,7 +306,7 @@ paths:
                 '404':
                   value:
                     {
-                    "detail": "Страница не найдена."
+                      "detail": "Страница не найдена."
                     }
           description: Получение списка комментариев к несуществующей публикации
       tags:
@@ -593,7 +592,7 @@ paths:
     get:
       operationId: Список сообществ
       description: Получение списка доступных сообществ.
-      parameters: []
+      parameters: [ ]
       responses:
         '200':
           content:
@@ -670,7 +669,7 @@ paths:
       description: >-
         Подписка пользователя от имени которого сделан запрос на пользователя
         переданного в теле запроса. Анонимные запросы запрещены.
-      parameters: []
+      parameters: [ ]
       requestBody:
         content:
           application/json:
@@ -722,7 +721,7 @@ paths:
     post:
       operationId: Получить JWT-токен
       description: Получение JWT-токена.
-      parameters: []
+      parameters: [ ]
       requestBody:
         content:
           application/json:
@@ -766,7 +765,7 @@ paths:
     post:
       operationId: Обновить JWT-токен
       description: Обновление JWT-токена.
-      parameters: []
+      parameters: [ ]
       requestBody:
         content:
           application/json:
@@ -809,7 +808,7 @@ paths:
     post:
       operationId: Проверить JWT-токен
       description: Проверка JWT-токена.
-      parameters: []
+      parameters: [ ]
       requestBody:
         content:
           application/json:
